@@ -20,31 +20,27 @@ defmodule Generator do
 
   def emit_code(:program, code_snippet, _) do
     """
-    .section
-    .p2align        4, 0x90
-"""  <>
+    """ <>
       code_snippet
   end
 
   def emit_code(:function, code_snippet, :main) do
     """
-    .globl  _main         ## -- Begin function main
-_main:                    ## @main
-""" <>
+	       .globl	main
+    main:
+    """ <>
       code_snippet
   end
 
   def emit_code(:return, code_snippet, _) do
     code_snippet<>
     """
-        movl    #{code_snippet}, %eax
         ret
     """
   end
   def emit_code(:negation, code_snippet, _) do
     code_snippet<>
     """
-
         neg	%eax
     """
   end

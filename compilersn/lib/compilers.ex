@@ -80,7 +80,7 @@ defmodule Compilers do
       |> Lexer.scan_words()
       |> IO.inspect(label: "\nLexer output")
 
-    filtro = Filter.filter_lexer(listaTokens)
+    filtro = Reorganizer.reorganizer_lexer(listaTokens)
 
     if filtro == [] do
       tree =
